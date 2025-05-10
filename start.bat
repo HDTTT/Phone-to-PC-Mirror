@@ -1,8 +1,20 @@
 @echo off
-:: 一键启动 scrcpy + sndcpy
+:: -------------------------------
+:: 一键启动 scrcpy + sndcpy（动态获取脚本目录）
+:: -------------------------------
 
-:: 1. 把所有工具目录临时加入 PATH
-set PATH=D:\SmallTool\phone_share_to_PC\VLC;D:\SmallTool\phone_share_to_PC\platform-tools\platform-tools;D:\SmallTool\phone_share_to_PC\scrcpy\scrcpy-win64-v3.2;D:\SmallTool\phone_share_to_PC\sndcpy;%PATH%
+:: 获取脚本自身所在目录（末尾带反斜杠）
+set "BASEDIR=%~dp0"
+
+:: 预定义工具路径
+set "ADB=%BASEDIR%platform-tools\adb.exe"
+set "VLC=%BASEDIR%VLC\vlc.exe"
+set "SNDCPY_APK=%BASEDIR%sndcpy\sndcpy.apk"
+
+:: 临时把工具目录加入 PATH
+:: （假设你在 BASEDIR 下有 VLC\, platform-tools\, scrcpy\, sndcpy\ 这四个子文件夹）
+set "PATH=%BASEDIR%VLC;%BASEDIR%platform-tools;%BASEDIR%scrcpy;%BASEDIR%sndcpy;%PATH%"
+
 
 :: 2. 启动 scrcpy：保持设备常亮，且把屏幕关掉（节省电）
 start "" scrcpy --stay-awake --turn-screen-off
@@ -10,7 +22,5 @@ start "" scrcpy --stay-awake --turn-screen-off
 :: 等待 scrcpy 完全启动
 timeout /t 2 /nobreak >nul
 
-:: 3. 启动 sndcpy（听声音）
-start "" sndcpy.bat
 
 exit /b 0
