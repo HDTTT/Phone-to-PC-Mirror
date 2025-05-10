@@ -37,11 +37,9 @@
 ```text
 project-root/
 ├── platform-tools/        # Android SDK Platform-Tools
-│	└── platform-tools
-│		└──adb(.exe)
+│	└──adb(.exe)		
 ├── scrcpy/                # scrcpy 可执行文件
-│   └── scrcpy-win64-v3.2
-│		└──scrcpy(.exe/.sh)
+│   └──scrcpy(.exe/.sh)		
 ├── sndcpy/                # sndcpy 脚本与 APK
 │   ├── sndcpy.bat
 │   ├── sndcpy
